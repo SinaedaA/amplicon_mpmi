@@ -1,0 +1,11 @@
+## variables to load for diversity_script.R 
+taxons <- c("phylum", "class", "order", "family", "genus", "species")
+myColors <- c("Soil" = "#861f1f", "Roots" = "darkgoldenrod2", "Rhizoplane" = "#bae450", "Rhizosphere" = "#64ceb9")
+permu_scheme <- how(
+    within = Within(type = "free"), nperm = 9999 #, blocks = subMeta$Timepoint # , blocks = data$Compartment
+)
+taxa_OI <- c("Hypocreales", "Erysiphales", "Magnaporthales", "Sebacinales", "Pleosporales", "Ustilaginales", "Glomerales")
+#taxa_OI <- c("Rhizobiales", "Pseudomonadales", "Corynebacteriales", "Pseudonocardiales", "Glycomycetales", "Micromonosporales", "Frankiales",
+#"Streptomycetales", "Micrococcales")
+# do it for all orders and check why we don't fid Hyphomicrobiales
+# check significant
