@@ -1,7 +1,7 @@
 # PRE-PROCESSING THE SEQUENCING DATA
 ## What do we get from the sequencing platform?
 The files we get from the sequencing platform are in FASTQ format, which is a variant of the FASTA format commonly used for sequence data. The FASTQ format has the particularity that each base encoded in the file is associated with a quality score as well, reflecting the "certainty" with which the sequencer has called that specific base.         
-![Fasta and Fastq file difference explanation.](images/sequencing_data.png)     
+![Fasta and Fastq file difference explanation.](./images/sequencing_data.png)     
 
 As you can see on the above image, both FASTA and FASTQ files are simple text files which follow certain rules. You can open them using a simple text editor, or in the command line you can view what is inside using the `cat` or `head` command (to see the whole file, or the first 10 lines, respectively). 
 
