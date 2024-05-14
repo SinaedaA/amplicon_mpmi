@@ -15,7 +15,7 @@ First, let's look at the default terminal emulator: GNOME Terminal. When you ope
 
 The line that you see written down has the following structure: `username@hostname:location$`. The **username** is you (in this case "**INSERT**"), the **hostname** is the system you are logged onto, and the location is where you are in your computer. Finally, "$" delimits the end of the prompt. 
 
-When I say "where you are on your computer", that is because you are now basically a 🐟 swimming inside your folders. The first place you end up in is your home 🏠. This is indicated by the tilde sign `~`, or by `/Users/<name>` (where <name> is replaced with the name of the computer user). In case you are unsure of your home directory, there is actually a pre-defined variable that contains that information in the computer, called `HOME`. To call a variable, you have to precede the variable name (in this case **HOME**) with a `$` sign in the terminal. 
+When I say "where you are on your computer", that is because you are now basically a 🐟 swimming inside your folders. The first place you end up in is your home 🏠. This is indicated by the tilde sign `~`, or by `/Users/<name>` (where <name> is replaced with the name of the computer user). In case you are unsure of your home directory, there is actually a pre-defined **global variable** that contains that information in the computer, called `HOME`. To call a variable, you have to precede the variable name (in this case **HOME**) with a `$` sign in the terminal. We will come back to variables a little later.
 
 You can type the following command in your terminal, press <Enter> and see what happens. 
 
@@ -145,6 +145,9 @@ alias ll='ls -lrth'                         # Preferred 'ls' implementation
 
 Try to figure out what they do differently than their basic counterparts !
 
-## Exercises
+## Variables and values
+According to [Wikipedia](https://en.wikipedia.org/wiki/Variable_(computer_science)#)
 
+## Exercises
+### Creating directories
 
