@@ -84,7 +84,7 @@ Here are some basic commands that will enable the little 🐟 in you to navigate
 - `history`: will give you a history of commands you ran. 
 - `cp`: stands for "copy". You can copy file1.txt to file1_copy.txt, simply by running `cp file1.txt file1_copy.txt`. 
 - `mv`: stands for "move". This will move a file from one place to another, and also enables you to rename it. For example, if I want to rename my copied file, I can run `mv file1_copy.txt copy_of_file1.txt`. Using `ls` you can see that the first file "disappeared", because it was renamed to "copy_of_file1.txt". In this case I stayed in the same directory, but I can also use it to move the file around, with or without renaming it. For example, `mv copy_of_file1.txt ~/Downloads/` will move the file to the ~/Downloads/ directory, without renaming it. If I wanted to rename it, I can just add the new name after the directory name : `mv copy_of_file1.txt ~/Downloads/new_file1.txt`. 
-- `rm`: stands for "remove". This can delete files and directories, given you use the correct flags. As you can imagine, this can be dangerous as it doesn't move the file to the bin, but rather deletes it **permanently** from the computer. In order to make sure we don't delete important stuff, we will change one of the "settings" of our command line, so that, when you use `rm` on a file, it will prompt you automatically to confirm that you really want to delete the file. 
+- `rm`: stands for "remove". 🚩🚩🚩 This can delete files and directories, given you use the correct flags. As you can imagine, this can be dangerous as it doesn't move the file to the bin, but rather deletes it **permanently** from the computer 🚩🚩🚩. In order to make sure we don't delete important stuff, we will change one of the "settings" of our command line, so that, when you use `rm` on a file, it will prompt you automatically to confirm that you really want to delete the file. 
 
 ## Bash settings
 In your `$HOME` directory, there are files and folders that you can see using `ls`, but there are also hidden files 👻. The name of these files starts with a `.`, which hides them from you, except if you use the `ls -a` command ("a" stands for "all"). Try it out !
@@ -146,7 +146,59 @@ alias ll='ls -lrth'                         # Preferred 'ls' implementation
 Try to figure out what they do differently than their basic counterparts !
 
 ## Variables and values
-According to [Wikipedia](https://en.wikipedia.org/wiki/Variable_(computer_science)#)
+According to [Wikipedia](https://en.wikipedia.org/wiki/Variable_(computer_science)#), a variable is "_an abstract storage location paired with an associated symbolic name, which contains some known or unknown quantity of data or object referred to as a value; or in simpler terms, a variable is a named container for a particular set of bits or type of data (like integer, float, string etc...)_". This sounds very complicated, but in reality it is not. It is a (more or less) temporary name (that's the abstract storage location with the symbolic name) to which you give a value (whatever is stored inside the name). We encountered one "global" variable (also called system-defined variable) a bit earlier: `HOME`. The system-defined variables are usually encoded into capital letter words; `PWD`, `SHELL`, `USER`, etc. To show their content, we can use the `echo` command. 
+
+We can create "user-defined variable", defined by... well **you** 👍. 
+
+```bash
+myname="replace_with_your_name"
+echo "My name is $myname"
+```
+
+This will output a sentence saying "My name is " followed by whatever you said your name was. 
+
+**NB1**: to tell a command like `echo` that it is dealing with a variable, you have to add the $ sign in front of the variable. `echo "My name is myname"` will literally output "My name is myname" because `echo` is not aware you are trying to use the user-defined variable. 
+**NB2**: in most programming languages there is a difference between simple quotation marks ('') and double quotation marks (""). Whatever is between simple quotation marks will not be _interpreted_. What does this mean? If we replace the "" with '' in the above command, bash will not even consider `$myname` as something else that plain text; aka **it will not even try to interpret it**. Therefore, I would recommend always using double quotes. 
+
+The variables we have seen until now are **scalar** variables: these are the simplest. We will not go deeper into this in this course, just know that there are other types of variables, with different descriptors (_e.g._, arrays are a type of variable that contains multiple elements, like a list). 
+
+## Loops and conditions
+### Loops
+_Why are we programming?_ Programmers are lazy 😴. When we have to do repetitive tasks, we don't want to do them one by one, so we write code in order to ask the computer to perform the task iteratively. For this we use "**loops**". 
+
+Imagine you have a bunch of files (let's say 10), and for each file you want to add a line of text at the end. One way to do it would be to use the `cat` command on each separate file:
+
+```bash
+cat file1.txt "line I want to add to the end of the file"
+cat file2.txt "line I want to add to the end of the file"
+cat file3.txt "line I want to add to the end of the file"
+cat file4.txt "line I want to add to the end of the file"
+cat file5.txt "line I want to add to the end of the file"
+cat file6.txt "line I want to add to the end of the file"
+cat file7.txt "line I want to add to the end of the file"
+cat file8.txt "line I want to add to the end of the file"
+cat file9.txt "line I want to add to the end of the file"
+cat file10.txt "line I want to add to the end of the file"
+```
+
+Now imagine we have 100. Writing it for each file is very tedious, and a little pointless. 
+
+We can "loop" over each individual file, and perform the command on each file, without writing it. 
+
+_What is the structure of a loop?_ The simplest form of a loop is called a `for` loop. Here is the architecture:
+
+```bash
+for fruit in banana apple kiwi orange; 
+    do echo $fruit; 
+done
+```
+
+![Structure of a for loop: it is composed of several keywors which define the architecture of the command. Keywords are "for", "in", "do", and "done". We can speak the for loop in English to make sense: "for item in list_of_items, do this action, then finish.](images/for_loop_structure.png)
+
+A good exercise to understand the for loop is to speak it out in English: _how would you translate this command in English?_ 
+
+### Conditions
+
 
 ## Exercises
 ### Creating directories

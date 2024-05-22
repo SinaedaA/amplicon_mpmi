@@ -65,7 +65,7 @@ mkdir 0_raw_reads
 For the purpose of clarity, we will number our directories to reflect the order in which the analysis is done. If you follow `mkdir` with several directory names, it will create all of them at the same time.         
 
 ```bash
-mkdir 0_raw_reads 1_fastqc 2_cutadapt 3_dada2 4_taxonomy
+mkdir 0_raw_reads 1_fastqc 2_adapter_removal 3_dada2 4_taxonomy
 ```
 
 As you can see, the pre-processing of our amplicon sequencing data has 4 steps:         
@@ -76,11 +76,55 @@ As you can see, the pre-processing of our amplicon sequencing data has 4 steps:
 
 ## Downloading our data
 
+## Creating a metadata file
+
+```bash
+mkdir metadata
+
+```
 
 ## 1. Quality check
 Of course, we don't want to look at the quality of the data with our naked eyes. For this, we will use the FastQC software, which will create a quality report for each of our `.fastq` files.      
 Because we have to execute that on each of our files, we are going to use a `for` loop, which will automatically loop over our files and create the associated reports. 
 
 ```bash
+mkdir -p 1_fastqc/tmp/
+for sample in $(cat metadata/sample-metadata.tsv); do
+    echo $sample;
+    fastqc --outdir 1_fastqc/ --dir 1_fastqc/tmp/ --extract -t 15 0_raw_reads/$sample*R1* 0_raw_reads/$sample*R2*
+    echo "Quality analysis (FASTQC) finished for sample $sample"
+done
+```
 
+Let's take a look at the results. The reports are in html format, so you can simply open them in a browser. 
+
+```bash
+safari 1_fastqc/<insert_html_file_here>.html
+```
+
+In this case, we only have 20 files, but even so checking them one by one would be a little tedious. We can use `multiqc` to create a combined report for all the `fastqc` reports:
+
+```bash
+multiqc 1_fastqc --outdir 1_fastqc --filename 1_multiqc_report.html
+safari 1_fastqc/1_multiqc_report.html
+```
+
+## 2. Removing adapters and filtering
+**image of why we remove adapters and primers**
+
+Maybe I can use my 2_cutadapt script, which does everything for them. Cause Cutadapt is pretty hard to explain... 
+```bash
+mkdir -p 2_adapter_removal/fastqc/tmp/
+
+$TRIM_GAL --quality 0 --phred64 --nextera --trim-n --fastqc --fastqc_args "--outdir 2_adapter_removal/trim_galore/fastqc --dir 2_adapter_removal/trim_galore/fastqc/tmp/ --extract -t 15" --output_dir 2_adapter_removal/trim_galore/ --paired 0_raw_reads/*fastq.gz
+
+
+```
+
+## 3. Denoising
+
+```bash
+for fastq in filtered; do
+    vsearch --cluster_unoise 
+done
 ```
