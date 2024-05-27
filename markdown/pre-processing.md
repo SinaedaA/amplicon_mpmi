@@ -65,7 +65,7 @@ mkdir 0_raw_reads
 For the purpose of clarity, we will number our directories to reflect the order in which the analysis is done. If you follow `mkdir` with several directory names, it will create all of them at the same time.         
 
 ```bash
-mkdir 0_raw_reads 1_fastqc 2_adapter_removal 3_dada2 4_taxonomy
+mkdir 0_raw_reads 1_fastqc 2_adapter_removal 3_denoising 4_taxonomy
 ```
 
 As you can see, the pre-processing of our amplicon sequencing data has 4 steps:         
@@ -99,7 +99,7 @@ done
 Let's take a look at the results. The reports are in html format, so you can simply open them in a browser. 
 
 ```bash
-safari 1_fastqc/<insert_html_file_here>.html
+firefox 1_fastqc/<insert_html_file_here>.html
 ```
 
 In this case, we only have 20 files, but even so checking them one by one would be a little tedious. We can use `multiqc` to create a combined report for all the `fastqc` reports:
