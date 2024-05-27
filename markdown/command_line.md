@@ -11,7 +11,7 @@ Inside the terminal emulator, there are also different "shells" you can use. The
 ## First look at the command line
 First, let's look at the default terminal emulator: GNOME Terminal. When you open it this is what you see:
 
-**insert image of a blank terminal** 
+![Simple image showing the terminal pre-installed on a Linux machine](./images/terminal_first_look.png) 
 
 The line that you see written down has the following structure: `username@hostname:location$`. The **username** is you (in this case "**INSERT**"), the **hostname** is the system you are logged onto, and the location is where you are in your computer. Finally, "$" delimits the end of the prompt. 
 
@@ -28,7 +28,8 @@ This should show you your `$HOME` directory.
 
 Now, let's open the VSCode program. To open a terminal, you can use the shortcut "Strg + Shift + `". The terminal should by default open in the lower part of the software window. The upper part is a "Welcome" page, which you can simply quit. It then let's you choose to open a folder, which will be your base folder for your project. I already made the terminal a bit prettier than our previous example, so that now the "command prompt" is shown underneath the directory we are in, and is preceded by a "❯". 
 
-**add picture of VSCode start screen**
+![VSCode start screen](images/VSCode_first_look.png)
+![VSCode with the terminal](images/VSCode_terminal.png)
 
 ## Command syntax logic
 Let's dive into what a **command** is, and how it is structured. Usually, it is structure like this:
@@ -166,20 +167,22 @@ The variables we have seen until now are **scalar** variables: these are the sim
 ### Loops
 _Why are we programming?_ Programmers are lazy 😴. When we have to do repetitive tasks, we don't want to do them one by one, so we write code in order to ask the computer to perform the task iteratively. For this we use "**loops**". 
 
-Imagine you have a bunch of files (let's say 10), and for each file you want to add a line of text at the end. One way to do it would be to use the `cat` command on each separate file:
+Imagine you have a bunch of files (let's say 10), and for each file you want to add a line of text at the end. One way to do it would be to use the `echo` command on each separate file:
 
 ```bash
-cat file1.txt "line I want to add to the end of the file"
-cat file2.txt "line I want to add to the end of the file"
-cat file3.txt "line I want to add to the end of the file"
-cat file4.txt "line I want to add to the end of the file"
-cat file5.txt "line I want to add to the end of the file"
-cat file6.txt "line I want to add to the end of the file"
-cat file7.txt "line I want to add to the end of the file"
-cat file8.txt "line I want to add to the end of the file"
-cat file9.txt "line I want to add to the end of the file"
-cat file10.txt "line I want to add to the end of the file"
+echo "line I want to add to the end of the file" >> file1.txt
+echo "line I want to add to the end of the file" >> file2.txt
+echo "line I want to add to the end of the file" >> file3.txt
+echo "line I want to add to the end of the file" >> file4.txt
+echo "line I want to add to the end of the file" >> file5.txt
+echo "line I want to add to the end of the file" >> file6.txt
+echo "line I want to add to the end of the file" >> file7.txt
+echo "line I want to add to the end of the file" >> file8.txt
+echo "line I want to add to the end of the file" >> file9.txt
+echo "line I want to add to the end of the file" >> file10.txt
 ```
+
+**NB**: ">" *writes* the result of the preceding command to the file that follows the symbol (>). However, if the file already contains something, it will simply overwrite the entire file, and only write whatever you specified. In contrast, using ">>" means that you will *append* to the file following the symbol (>>). Thus, if the file already contains some data, it will only add, in our case, the result of `echo` to the *end* of the file. 
 
 Now imagine we have 100. Writing it for each file is very tedious, and a little pointless. 
 
